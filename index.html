@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>MeeSlider</title>
+        <style type="text/css">
+            #slider {
+                width: 50%;
+                margin: 0 auto;
+            }
+
+            .prev, .next { cursor: pointer }
+            .prev:hover, .next:hover { color: blue }
+        </style>
+    </head>
+    <body>
+
+        <div id="slider">
+            <ul>
+                <li>Slide 1</li>
+                <li>Slide 2</li>
+                <li>Slide 3</li>
+                <li>Slide 4</li>
+                <li>Slide 5</li>
+            </ul>
+            <p>
+                <span class="prev">&lt; Prev</span>
+                <span class="next">Next &gt;</span>
+            </p>
+        </div>
+
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.js"></script>
+        <script type="text/javascript" src="jquery.meeslider.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#slider').meeSlider();
+            });
+        </script>
+    </body>
+</html>
+    
