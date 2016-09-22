@@ -1,7 +1,7 @@
 /*
  * MeeSlider, version: 1.1
  *
- * Author: Nikita Melikhov, ver@0xff.su
+ * Author: Nikita Melikhov, ver@0xff.su, http://xslt.pw
  * 
  * 1.1: Added autoplay
  * 1.0: Initial version
