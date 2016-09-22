@@ -21,6 +21,8 @@ Simple image/content slider as jQuery plugin
 **JavaScript** (all options are optional):
 ```js
 $('#myslider').meeSlider({
+    auto:     false,  // Autoplay, default: false
+    delay:    5000,   // Autoplay delay, default: 5000
     controls: true,   // Show controls, default: true
     prev:     'prev', // Prev selector, default: 'prev'
     next:     'next', // Next selector, default: 'next'
@@ -28,3 +30,11 @@ $('#myslider').meeSlider({
     fadeOut:  200,    // fadeOut duration, default: 200
 });
 ```
+
+# version history
+
+## 1.1
+ - Added autoplay
+
+## 1.0
+ - Initial commit

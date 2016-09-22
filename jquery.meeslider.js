@@ -1,8 +1,10 @@
 /*
- * MeeSlider, version: 1.0
+ * MeeSlider, version: 1.1
  *
  * Author: Nikita Melikhov, ver@0xff.su
  * 
+ * 1.1: Added autoplay
+ * 1.0: Initial version
 */
 (function($) {
     jQuery.fn.meeSlider = function(options) {
@@ -10,7 +12,7 @@
         _current = 1;
         options = $.extend({
             auto:     false,  // Autoplay, default: false
-            delay:    1000,   // Autoplay delay, default: 1000
+            delay:    5000,   // Autoplay delay, default: 5000
             controls: true,   // Show controls, default: true
             prev:     'prev', // Prev selector, default: 'prev'
             next:     'next', // Next selector, default: 'next'
@@ -25,6 +27,7 @@
         var make = function() {
             if(options._debug) console.log(' - MeeSlider: make()');
             var element = $(this);
+
             var ul = element.find('> ul');
             if(ul) {
                 if(options._debug) console.log(' - MeeSlider: ul found');
@@ -69,12 +72,35 @@
 
                         _current++;
                         $(ul.find('li')[_current - 1]).fadeIn(options.fadeIn);
-                        if(options._debug) console.log(_current);
 
                         element.data('mee-current', _current);
                         if(options._debug) console.log(' - MeeSlider: nextSlide(), count: ' + _count + ', current: ', _current);
                     });
                 }
+
+                // Autostart
+                if(options.auto) {
+                    if(options._debug) console.log(' - MeeSlider: autostart is enabled');
+                    function autoPlay() {
+                        if(options._debug) console.log(' - MeeSlider: autoPlay()');
+                        nextSlide();
+                        timeout = setTimeout(autoPlay, options.delay);
+                    }
+                    var timeout = setTimeout(autoPlay, options.delay);
+
+                    element.hover(
+                        function() {
+                            if(options._debug) console.log(' - MeeSlider: hover - stop autoplay');
+                            clearTimeout(timeout);
+                        },
+                        function() {
+                            if(options._debug) console.log(' - MeeSlider: hout - resume autoplay');
+                            timeout = setTimeout(autoPlay, options.delay);
+                        }
+                    );
+                } else {
+                    console.warn('no autoplay');
+                } // if options.auto
 
                 element.find('.' + options.prev).click(prevSlide);
                 element.find('.' + options.next).click(nextSlide);
