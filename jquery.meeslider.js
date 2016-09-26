@@ -8,8 +8,8 @@
 */
 (function($) {
     jQuery.fn.meeSlider = function(options) {
-        _count = 0;
-        _current = 1;
+        var _count = 0;
+        var _current = 1;
         options = $.extend({
             auto:     false,  // Autoplay, default: false
             delay:    5000,   // Autoplay delay, default: 5000
@@ -47,6 +47,7 @@
                 function prevSlide(event) {
                     if(options._debug) console.log(' - MeeSlider: prevSlide(), count: ' + _count + ', current: ', _current);
                     $(ul.find('li')[_current - 1]).fadeOut(options.fadeOut, function() {
+                        ul.find('li').hide();
                         if(_current == 1) {
                             _current = _count + 1;
                             element.data('mee-current', _current + 1);
@@ -65,6 +66,7 @@
                 function nextSlide(event) {
                     if(options._debug) console.log(' - MeeSlider: nextSlide(), count: ' + _count + ', current: ', _current);
                     $(ul.find('li')[_current - 1]).fadeOut(options.fadeOut, function() {
+                        ul.find('li').hide();
                         if(_current == _count) {
                             _current = 0;
                             element.data('mee-current', 0);
